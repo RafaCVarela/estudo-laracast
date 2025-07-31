@@ -68,6 +68,7 @@
         }
 
         // Variável que armazenara a array filtrada, perceba que ela já tem o item que queremos, os livros
+        // Aqui seja chamarmos a função acima "filter" ou a buildin "array_filter" dá no mesmo, mais informações adiante
         $filteredBooks = array_filter($books, function ($book){
             // Função lambda que nos permite controlar melhor qual item queremos filtrar
             return $book['releaseYear'] >= 2000;
