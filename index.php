@@ -26,22 +26,43 @@
             [
                     "name" => "Androides Sonham com Ovelhas Elétricas?",
                     "author" => "Philip K. Dick",
+                    "releaseYear" => 1968,
                     "purchaseUrl" => "http://exemple.com"
             ],
             [
                     "name" =>"Projeto Avé Maria",
                     "author" => "Andy Weir",
+                    "releaseYear" => 2021,
+                    "purchaseUrl" => "http://exemple.com"
+            ],
+            [
+                    "name" => "Perdido em Marte",
+                    "author" => "Andy Weir",
+                    "releaseYear" => 2011,
                     "purchaseUrl" => "http://exemple.com"
             ]
         ];
 
+        function filterByAuthor ($books, $author) {
+
+            $filteredBooks = [];
+
+            foreach ($books as $book){
+                if ($book['author'] === $author){
+                    $filteredBooks[] = $book;
+                }
+            }
+
+            return $filteredBooks;
+        }
+
     ?>
 
     <ul>
-        <?php foreach($books as $book): ?>
+        <?php foreach(filterByAuthor($books, 'Philip K. Dick') as $book): ?>
             <li>
-                <a href="$book['purchaseUrl']">
-                    <?= $book['name']; ?>
+                <a href="<?= $book['purchaseUrl'] ?>">
+                    <?php echo "{$book['name']} ({$book['releaseYear']})";?> - Escrito por <?= $book['author'];?>
                 </a>
             </li>
         <?php endforeach; ?>
