@@ -6,7 +6,7 @@
             <h1 class="text-2x1 font-bold">Página Não Encontrada</h1>
             <p class="mt-4">
                 Sinto muito não encotramos o que você queria
-                <br><a href="/" class="text-blue underline">Volte para Home</a>
+                <br><a href="/" class="text-blue-500 hover:underline">Volte para Home</a>
             </p>
         </div>
     </main>
