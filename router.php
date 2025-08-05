@@ -21,10 +21,18 @@ function routeToController ($uri, $routes){
     }
 }
 
-function abort (){
-    http_response_code(404);
+function abort ($errorCode = Response::HTTP_NOT_FOUND) {
+    
+    $error = [
+        Response::HTTP_NOT_FOUND => 'views/404.php',
+        Response::HTTP_FORBIDDEN => 'views/403.php',
+        // Response::HTTP_NOT_AUTHORIZED => 'views/401.php',
+        // Response::HTTP_NOT_ALLOWED => 'views/405.php'
+    ];
 
-    require "views/404.php";
+    if (array_key_exists($errorCode, $error)){
+        require $error[$errorCode];
+    }
 
     die();
 }

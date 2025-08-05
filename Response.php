@@ -1,0 +1,11 @@
+<?php
+
+class Response {
+
+    const HTTP_OK = 200;
+    const HTTP_NOT_AUTHORIZED = 401;
+    const HTTP_FORBIDDEN = 403;
+    const HTTP_NOT_FOUND = 404;
+    const HTTP_NOT_ALLOWED = 405;
+
+}
