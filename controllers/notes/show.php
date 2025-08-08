@@ -1,7 +1,7 @@
 <?php
 
 
-$config = require "config.php";
+$config = require basePath("config.php");
 $db = new Database($config['database']);
 
 
@@ -14,4 +14,7 @@ $note = $db->query("SELECT * FROM notes WHERE id=:id", [":id" => $_GET['id']])->
 autorize($note['user_id'] === $currentUserId, Response::HTTP_FORBIDDEN);
 
 
-require "views/notes/show.view.php";
+require view("notes/show", [
+    'heading' => $heading,
+    'note' => $note
+]);

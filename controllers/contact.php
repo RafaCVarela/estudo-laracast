@@ -2,4 +2,6 @@
 
 $heading = 'Contato';
 
-require "views/contact.view.php";
+require view("contact",[
+    'heading' => $heading
+]);
