@@ -1,5 +1,6 @@
 <?php 
 
+namespace Core;
 class Validator
 {
     public static function validateNoteBody($body, $minLen = 1, $maxLen = INF)

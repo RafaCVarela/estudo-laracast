@@ -1,11 +1,13 @@
 <?php
 
+use Core\Database;
+use Core\Validator;
 
-require basePath("Core/Validator.php");
+require basePath("Core/Validator");
 
 
 
-$config = require basePath("config.php");
+$config = require basePath("config");
 $db = new Database($config['database']);
 
 $heading = 'Criar Nota';

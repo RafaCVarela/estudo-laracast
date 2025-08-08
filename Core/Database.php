@@ -1,5 +1,7 @@
 <?php
 
+namespace Core;
+use PDO;
 // Conectar ao meu banco de dados MySQl e executa uma query
 class Database {
 

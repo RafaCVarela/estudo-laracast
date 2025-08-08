@@ -1,5 +1,7 @@
 <?php
 
+use Core\Response;
+
 function dd ($value)
 {
     echo "<pre>";
@@ -23,9 +25,10 @@ function autorize ($condition, $status = Response::HTTP_FORBIDDEN)
     }
 }
 
+
 function basePath ($path)
 {
-    return BASE_PATH . $path;
+    return (BASE_PATH . "/{$path}.php");
 }
 
 
@@ -35,5 +38,5 @@ function view ($path, $attributes = [])
 
 
     
-    require basePath("views/{$path}.view.php");
+    require basePath("views/{$path}.view");
 }

@@ -1,6 +1,8 @@
 <?php
 
-$routes = require basePath('routes.php');
+use Core\Response;
+
+$routes = require basePath('routes');
 
 
 function routeToController ($uri, $routes){
@@ -15,8 +17,8 @@ function routeToController ($uri, $routes){
 function abort ($errorCode = Response::HTTP_NOT_FOUND) {
     
     $error = [
-        Response::HTTP_NOT_FOUND => 'views/404.php',
-        Response::HTTP_FORBIDDEN => 'views/403.php',
+        Response::HTTP_NOT_FOUND => 'views/404',
+        Response::HTTP_FORBIDDEN => 'views/403',
         // Response::HTTP_NOT_AUTHORIZED => 'views/401.php',
         // Response::HTTP_NOT_ALLOWED => 'views/405.php'
     ];
