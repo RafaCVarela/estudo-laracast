@@ -2,6 +2,7 @@
 
 $heading = 'Sobre Mim';
 
-require view("about", [
+view('about', [
     'heading' => $heading
 ]);
+

@@ -40,3 +40,20 @@ function view ($path, $attributes = [])
     
     require basePath("views/{$path}.view");
 }
+
+
+function abort ($errorCode = Response::HTTP_NOT_FOUND) {
+    
+    $error = [
+        // Response::HTTP_NOT_AUTHORIZED => view('401'),
+        Response::HTTP_FORBIDDEN => basePath('views/403'),
+        Response::HTTP_NOT_FOUND => basePath('views/404'),
+        // Response::HTTP_NOT_ALLOWED => view('405')
+    ];
+
+    if (array_key_exists($errorCode, $error)){
+        require $error[$errorCode];
+    }
+
+    die();
+}

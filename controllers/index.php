@@ -2,6 +2,6 @@
 
 $heading = 'Home';
 
-require view("index", [
+view("index", [
     'heading' => $heading
 ]);

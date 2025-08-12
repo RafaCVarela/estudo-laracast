@@ -1,36 +1,80 @@
 <?php
 
+
+namespace Core;
 use Core\Response;
 
-$routes = require basePath('routes');
 
+class Router {
 
-function routeToController ($uri, $routes){
-    if (array_key_exists($uri, $routes)){
-        require basePath($routes[$uri]);
-    }
-    else {
-        abort();
-    }
-}
-
-function abort ($errorCode = Response::HTTP_NOT_FOUND) {
+    protected $routes = [];
+    protected $methods = ['GET', 'POST', 'DELETE', 'PATCH', 'PUT'];
     
-    $error = [
-        Response::HTTP_NOT_FOUND => 'views/404',
-        Response::HTTP_FORBIDDEN => 'views/403',
-        // Response::HTTP_NOT_AUTHORIZED => 'views/401.php',
-        // Response::HTTP_NOT_ALLOWED => 'views/405.php'
-    ];
+    public function __call ($name, $arguments) {
 
-    if (array_key_exists($errorCode, $error)){
-        require $error[$errorCode];
+        $method = strtoupper($name);
+
+        if (in_array($method, $this->methods)) {
+            [$uri, $controller] = $arguments;
+            $this->routes[] = compact('method', 'uri', 'controller');
+            return;
+        }
+
+        $this->abort(Response::HTTP_NOT_FOUND);
     }
 
-    die();
+
+    public function get($uri, $controller) {
+        $this->__call('GET', [$uri, $controller]);
+    }
+
+    public function post($uri, $controller) {
+        $this->__call('POST', [$uri, $controller]);
+    }
+
+
+    public function delete($uri, $controller) {
+        $this->__call('DELETE', [$uri, $controller]);
+    }
+
+
+    public function patch($uri, $controller) {
+        $this->__call('PATCH', [$uri, $controller]);
+    }
+    
+
+    public function put($uri, $controller) {
+        $this->__call('PUT', [$uri, $controller]);
+    }
+
+
+    public function route($uri, $method)
+    {
+        
+        foreach ($this->routes as $route) {
+            if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
+                return require basePath($route['controller']);
+            }
+        }
+
+        $this->abort();
+    }
+
+    
+    protected function abort ($errorCode = Response::HTTP_NOT_FOUND) {
+    
+        $error = [
+            // Response::HTTP_NOT_AUTHORIZED => view('401'),
+            Response::HTTP_FORBIDDEN => basePath('views/403'),
+            Response::HTTP_NOT_FOUND => basePath('views/404'),
+            // Response::HTTP_NOT_ALLOWED => view('405')
+        ];
+
+        if (array_key_exists($errorCode, $error)){
+            require $error[$errorCode];
+        }
+
+        die();
+    }
+
 }
-
-
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-
-routeToController($uri, $routes);

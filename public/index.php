@@ -14,19 +14,11 @@ spl_autoload_register (function ($class) {
 
 
 
-require basePath("Core/router");
+$router = new \Core\Router();
+$routes = require basePath('routes');
+
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+$method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
 
-
-/* 
-$id = $_GET['id'];
-
-$query = "SELECT * FROM notes WHERE id=:id";
-
-
-$notes = $db->query($query, [':id' => $id])->fetch();
-
-
-dd($notes);
-
-*/
+$router->route($uri, $method);
