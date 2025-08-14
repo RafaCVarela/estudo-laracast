@@ -7,5 +7,8 @@ $router->get('/contact', 'controllers/contact');
 
 $router->get('/notes', 'controllers/notes/index');
 $router->get('/note', 'controllers/notes/show');
+
 $router->get('/notes/create', 'controllers/notes/create');
-$router->post('/notes/create', 'controllers/notes/create');
+$router->delete('/notes/create', 'controllers/notes/destroy');
+
+$router->post('/notes', 'controllers/notes/store');

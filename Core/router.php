@@ -28,6 +28,7 @@ class Router {
         $this->__call('GET', [$uri, $controller]);
     }
 
+    
     public function post($uri, $controller) {
         $this->__call('POST', [$uri, $controller]);
     }

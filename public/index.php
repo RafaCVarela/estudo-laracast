@@ -13,6 +13,7 @@ spl_autoload_register (function ($class) {
 });
 
 
+require basePath('bootstrap');
 
 $router = new \Core\Router();
 $routes = require basePath('routes');
