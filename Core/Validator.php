@@ -3,7 +3,7 @@
 namespace Core;
 class Validator
 {
-    public static function validateNoteBody($body, $minLen = 1, $maxLen = INF)
+    public static function validateString($body, $minLen = 1, $maxLen = INF)
     {
         $body = trim($body);
 
