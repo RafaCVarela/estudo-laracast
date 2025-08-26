@@ -4,7 +4,9 @@
 
 <main>
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <p>Olá, a todos!</p>
+        <p>
+            Olá, <?= $_SESSION['user']['name'] ?? 'Visitante' ?>!
+        </p>
     </div>
 </main>
 
