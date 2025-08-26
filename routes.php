@@ -5,7 +5,7 @@ $router->get('/', 'controllers/index');
 $router->get('/about', 'controllers/about');
 $router->get('/contact', 'controllers/contact');
 
-$router->get('/notes', 'controllers/notes/index');
+$router->get('/notes', 'controllers/notes/index')->only('auth');
 $router->get('/note', 'controllers/notes/show');
 $router->delete('/note', 'controllers/notes/destroy');
 
@@ -17,5 +17,5 @@ $router->patch('/note', 'controllers/notes/update');
 $router->get('/notes/create', 'controllers/notes/create');
 $router->post('/notes', 'controllers/notes/store');
 
-$router->get('/register', 'controllers/registration/create');
+$router->get('/register', 'controllers/registration/create')->only('guest');
 $router->post('/register', 'controllers/registration/store');

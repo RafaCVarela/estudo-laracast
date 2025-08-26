@@ -10,7 +10,7 @@ $db = App::resolve(Database::class);
 $heading = 'Criar Nota';
 $errors = [];
 
-if (!Validator::validateNoteBody(($_POST['body']), 1, 100)) {
+if (!Validator::validateString(($_POST['body']), 1, 100)) {
     $errors['body'] = 'A nota deve ter entre 1 e 100 caracteres.';
 }
 
