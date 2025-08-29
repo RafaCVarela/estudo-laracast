@@ -8,10 +8,20 @@
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a href="/" aria-current="page" class="<?= urlIs('/') ? 'bg-gray-900 text-white' : 'text-gray-300'?> rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">Home</a>
-                        <a href="/about" class="<?= urlIs('/about') ? 'bg-gray-900 text-white' : 'text-gray-300'?> rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">Sobre Mim</a>
-                        <a href="/notes" class="<?= urlIs('/notes') ? 'bg-gray-900 text-white' : 'text-gray-300'?> rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">Notas</a>
-                        <a href="/contact" class="<?= urlIs('/contact') ? 'bg-gray-900 text-white' : 'text-gray-300'?> rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">Contato</a>
+                        <a href="/"
+                            class="<?= urlIs('/') ? 'bg-gray-900 text-white' : 'text-gray-300'?> rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">
+                            Home</a>
+                        <a href="/about"
+                            class="<?= urlIs('/about') ? 'bg-gray-900 text-white' : 'text-gray-300'?> rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">
+                            Sobre Mim</a>
+                        <?php if ($_SESSION['user'] ?? false) : ?>
+                            <a href="/notes"
+                                class="<?= urlIs('/notes') ? 'bg-gray-900 text-white' : 'text-gray-300'?> rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">
+                                Notas</a>
+                        <?php endif; ?>
+                        <a href="/contact"
+                            class="<?= urlIs('/contact') ? 'bg-gray-900 text-white' : 'text-gray-300'?> rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">
+                            Contato</a>
                     </div>
                 </div>
             </div>
@@ -31,9 +41,22 @@
                             <span class="sr-only">Open user menu</span>
                             <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="size-8 rounded-full" />
                         </button>
+
+                        <div class="ml-3">
+                            <form method="POST" action="/logout">
+                                <input type="hidden" name="_method" value="DELETE"/>
+                                <button type="submit" class="text-white">Log Out</button>
+                            </form>
+                        </div>
+
                     <?php else: ?>
-                        <a href='/register' class='relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm text-white px-3 py-2 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800'>
+                        <a href="/register"
+                            class="<?= urlIs('/register') ? 'bg-gray-900 text-white' : 'text-gray-300'?> rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">
                             Registrar
+                        </a>
+                        <a href="/login"
+                            class="<?= urlIs('/login') ? 'bg-gray-900 text-white' : 'text-gray-300'?> rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white">
+                            Login
                         </a>
                     <?php endif; ?>
 
