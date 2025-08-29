@@ -4,6 +4,7 @@
 namespace Core;
 use Core\Middleware\Middleware;
 use Core\Response;
+use core\Authenticator;
 
 
 class Router {
@@ -70,7 +71,7 @@ class Router {
                 Middleware::resolve($route['middleware'] ?? null);
 
 
-                return require basePath($route['controller']);
+                return require basePath('Http/controllers/' . $route['controller']);
             }
         }
 
