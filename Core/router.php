@@ -79,6 +79,12 @@ class Router {
     }
 
     
+    public function previousUrl()
+    {
+        return $_SERVER['HTTP_REFERER'];
+    }
+
+
     protected function abort ($errorCode = Response::HTTP_NOT_FOUND) {
     
         $error = [
